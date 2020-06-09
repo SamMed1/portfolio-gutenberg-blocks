@@ -1,0 +1,54 @@
+@import '../../../../themes/gutenberg/src/scss/01-tools/px-to-rem'; // This must be first.
+@import '../../../../themes/gutenberg/src/scss/00-settings/breakpoints';
+@import '../../../../themes/gutenberg/src/scss/00-settings/spacings';
+@import '../../../../themes/gutenberg/src/scss/00-settings/colors';
+@import '../../../../themes/gutenberg/src/scss/00-settings/columns';
+@import '../../../../themes/gutenberg/src/scss/00-settings/radius';
+@import '../../../../themes/gutenberg/src/scss/00-settings/transitions';
+@import '../../../../themes/gutenberg/src/scss/00-settings/typography';
+
+.jokes-block-wrapper,
+.single-jokes .c-single-post__content {
+	display: grid;
+	grid-gap: $grid-spacing;
+	grid-template-columns: 1fr;
+}
+
+.single-jokes .site-main .o-container {
+	padding: $gutter-width-sm;
+}
+
+.jokes-block-wrapper {
+	.wp-block-gutenberg-joke-block {
+		p {
+			margin-top: $half-grid-spacing;
+			margin-bottom: $half-grid-spacing;
+		}
+
+		&.is-style-no_image {
+			grid-column: 1 / span 2;
+			margin: 0;
+			p {
+				position: static;
+			}
+		}
+	}
+}
+
+@media ( min-width: $small-tablet ) {
+	.jokes-block-wrapper {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media ( min-width: $desktop ) {
+	.jokes-block-wrapper {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media ( min-width: $large-desktop ) {
+	.jokes-block-wrapper {
+		grid-template-columns: 1fr 1fr;
+	}
+}

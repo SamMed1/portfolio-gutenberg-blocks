@@ -1,0 +1,132 @@
+@import '../../../../themes/gutenberg/src/scss/01-tools/px-to-rem'; // This must be first.
+@import '../../../../themes/gutenberg/src/scss/00-settings/breakpoints';
+@import '../../../../themes/gutenberg/src/scss/00-settings/spacings';
+@import '../../../../themes/gutenberg/src/scss/00-settings/colors';
+@import '../../../../themes/gutenberg/src/scss/00-settings/columns';
+@import '../../../../themes/gutenberg/src/scss/00-settings/icons';
+@import '../../../../themes/gutenberg/src/scss/00-settings/radius';
+@import '../../../../themes/gutenberg/src/scss/00-settings/transitions';
+@import '../../../../themes/gutenberg/src/scss/00-settings/typography';
+@import '../../../../themes/gutenberg/src/scss/01-tools/mixin-layout';
+
+// Front-end example.
+.wp-block-gutenberg-hero-banner-block {
+	display: block;
+
+	.wp-block-cover {
+		align-content: center;
+		background-position: unset;
+		background-position-y: 100%;
+		display: block;
+		margin: 0;
+		min-height: unset;
+		max-height: $home-banner-height;
+		padding-bottom: 20%;
+
+		&::before {
+			display: none;
+		}
+	}
+
+	.wp-block-image {
+		bottom: 0;
+		position: absolute;
+		margin: 0;
+		margin-bottom: gutenberg-px-to-rem( -3px );
+		text-align: center;
+		width: 100%;
+	}
+
+	.hero-banner-block__image {
+		position: relative;
+		max-height: $home-banner-height;
+	}
+}
+
+// Custom breakpoints - non-variable.
+@media ( min-width: 620px ) {
+	.entry-content {
+		.wp-block-gutenberg-hero-banner-block {
+			.wp-block-cover {
+				padding-bottom: 21%;
+			}
+		}
+	}
+}
+
+@media ( min-width: 870px ) {
+	.entry-content {
+		.wp-block-gutenberg-hero-banner-block {
+			.wp-block-cover {
+				padding-bottom: 22%;
+			}
+		}
+	}
+}
+
+@media ( min-width: 1110px ) {
+	.entry-content {
+		.wp-block-gutenberg-hero-banner-block {
+			.wp-block-cover {
+				padding-bottom: 23%;
+			}
+		}
+	}
+}
+
+@media ( min-width: 1300px ) {
+	.entry-content {
+		.wp-block-gutenberg-hero-banner-block {
+			.wp-block-cover {
+				height: $home-banner-height;
+				padding-bottom: 20%;
+			}
+		}
+	}
+}
+
+// Editor-only styles.
+.block-editor .editor-styles-wrapper {
+	div[data-type='gutenberg/hero-banner-block'] {
+		.wp-block-gutenberg-hero-banner-block {
+			.wp-block-cover__placeholder-background-options {
+				display: none;
+			}
+
+			.editor-text-input:last-of-type {
+				margin-top: gutenberg-px-to-rem( 60px );
+			}
+		}
+
+		div[data-type='core/paragraph'] {
+			display: none;
+		}
+
+		div[data-type='core/image'] {
+			transform-origin: center center;
+			width: 75%;
+			margin: auto;
+			background: $color-light-grey;
+			opacity: 0.8;
+
+			figcaption {
+				display: none;
+			}
+
+			.wp-block-image {
+				background-color: $color-white;
+				box-shadow: $gutenberg-editor-block-overlay;
+				margin-bottom: gutenberg-px-to-rem( -14px );
+
+				.components-resizable-box__container {
+					width: 100% !important;
+				}
+			}
+
+			&::before {
+				left: auto !important;
+				border: none !important;
+			}
+		}
+	}
+}

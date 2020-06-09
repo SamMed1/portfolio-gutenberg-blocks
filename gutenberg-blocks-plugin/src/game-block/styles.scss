@@ -1,0 +1,159 @@
+@import '../../../../themes/gutenberg/src/scss/01-tools/px-to-rem'; // This must be first.
+@import '../../../../themes/gutenberg/src/scss/00-settings/breakpoints';
+@import '../../../../themes/gutenberg/src/scss/00-settings/spacings';
+@import '../../../../themes/gutenberg/src/scss/00-settings/colors';
+@import '../../../../themes/gutenberg/src/scss/00-settings/columns';
+@import '../../../../themes/gutenberg/src/scss/00-settings/icons';
+@import '../../../../themes/gutenberg/src/scss/00-settings/images';
+@import '../../../../themes/gutenberg/src/scss/00-settings/radius';
+@import '../../../../themes/gutenberg/src/scss/00-settings/transitions';
+@import '../../../../themes/gutenberg/src/scss/00-settings/typography';
+@import '../../../../themes/gutenberg/src/scss/01-tools/mixin-layout';
+
+// Front-end example.
+.wp-block-gutenberg-game-block {
+	display: block;
+	position: relative;
+
+	&__upper {
+		margin: ( -$spacing-xl ) ( -$spacing-md ) $spacing-md;
+	}
+
+	h1 {
+		font-size: $font-size-2-5;
+	}
+
+	.wp-block-gutenberg-game-block-cover-image {
+		display: block;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+
+		.wp-block-image {
+			padding-top: $game-padding;
+			background-color: $color-game-block-background;
+			position: relative;
+			margin: 0;
+
+			img {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				display: block;
+			}
+		}
+
+		&.hidden {
+			display: none;
+		}
+	}
+
+	.wp-block-gutenberg-game-block-game {
+		height: 100%;
+		overflow: hidden;
+		padding-bottom: $game-padding;
+		position: relative;
+		width: 100%;
+		top: 0;
+		z-index: 0;
+		display: none;
+
+		&.show {
+			display: block;
+		}
+	}
+
+	.wp-block-gutenberg-game-block-iframe {
+		border: none;
+		height: 100%;
+		left: 0;
+		min-width: 100%;
+		position: absolute;
+		top: 0;
+		width: 1px !important;
+	}
+}
+
+.portrait-only {
+	align-items: center;
+	background: $color-gutenberg-blue;
+	flex-flow: column nowrap;
+	height: 100%;
+	justify-content: center;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+	z-index: 101;
+	left: 0;
+	top: 0;
+	display: none;
+
+	@media screen and ( max-width: $desktop ) {
+		@media screen and ( orientation: landscape ) {
+			display: flex;
+		}
+	}
+
+	.portrait-only__close {
+		background-color: rgba( 0, 0, 0, 0.5 );
+		background-image: $img-game-block-close-icon;
+		background-position: gutenberg-px-to-rem( 4px ) 50%;
+		background-repeat: no-repeat;
+		border: 1px solid hsla( 0, 0%, 100%, 0.5 );
+		border-bottom-left-radius: $radius-small;
+		border-right: none;
+		border-top-left-radius: $radius-small;
+		color: $color-white;
+		display: block;
+		font-family: $font-heading;
+		font-size: $font-size-7;
+		font-weight: $font-weight-medium;
+		padding: $half-grid-spacing $half-grid-spacing $half-grid-spacing
+			calc( 3 * #{$half-grid-spacing} );
+		position: fixed;
+		right: 0;
+		text-decoration: none;
+		top: 25%;
+		z-index: 1;
+	}
+
+	p {
+		color: $color-gutenberg-yellow;
+		font-family: $font-heading;
+		font-size: $font-size-2;
+		font-weight: $font-weight-medium;
+		line-height: $line-height-form-element;
+		padding: 0 $grid-spacing;
+		text-align: center;
+	}
+
+	.portrait-only__image {
+		background: $img-game-block-rotate-screen no-repeat right gutenberg-px-to-rem( 10px ) center;
+	}
+}
+
+// Editor-only styles.
+.block-editor .editor-styles-wrapper {
+	div[data-type='gutenberg/game-block'] {
+		.wp-block-gutenberg-game-block {
+			h1 {
+				font-size: $font-size-2-5;
+			}
+
+			p {
+				line-height: $line-height-copy;
+				margin: $spacing-sm 0;
+				font-weight: 300;
+			}
+
+			.block-editor-url-input {
+				input {
+					background: $color-editor-grey;
+					padding: $grid-spacing $gutter-width;
+					width: 100%;
+				}
+			}
+		}
+	}
+}

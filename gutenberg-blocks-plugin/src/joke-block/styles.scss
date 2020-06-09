@@ -1,0 +1,152 @@
+@import '../../../../themes/gutenberg/src/scss/01-tools/px-to-rem'; // This must be first.
+@import '../../../../themes/gutenberg/src/scss/00-settings/breakpoints';
+@import '../../../../themes/gutenberg/src/scss/00-settings/spacings';
+@import '../../../../themes/gutenberg/src/scss/00-settings/colors';
+@import '../../../../themes/gutenberg/src/scss/00-settings/columns';
+@import '../../../../themes/gutenberg/src/scss/00-settings/radius';
+@import '../../../../themes/gutenberg/src/scss/00-settings/transitions';
+@import '../../../../themes/gutenberg/src/scss/00-settings/typography';
+
+@mixin jokes-block-shared-text-styles {
+	font-family: $font-bold;
+	font-weight: $font-weight-bold;
+	color: $color-white;
+	text-align: center;
+	line-height: 1.4;
+	margin: gutenberg-px-to-rem( 6px ) 0;
+	z-index: 1;
+	text-shadow: $jokes-text-outline;
+}
+
+// Front-end example.
+.wp-block-gutenberg-joke-block {
+	font-family: $font-heading;
+	font-weight: $font-weight-bold;
+	padding-top: 56.25%;
+	position: relative;
+
+	&.is-style-no_image {
+		padding-top: unset;
+		p {
+			font-family: $font-heading;
+			font-size: $font-size-4;
+			color: $color-dark-blue;
+			text-shadow: unset;
+			text-align: left;
+			&:last-of-type {
+				color: $color-gutenberg-red;
+			}
+		}
+
+		figure {
+			display: none;
+		}
+	}
+
+	.wp-block-image {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		margin: 0;
+	}
+
+	p {
+		@include jokes-block-shared-text-styles;
+		padding: 0 $grid-spacing;
+		position: absolute;
+		width: 100%;
+		background: transparent;
+		font-size: $font-size-6;
+		font-weight: $font-weight-medium;
+
+		&:first-of-type {
+			top: 0;
+		}
+
+		&:last-of-type {
+			bottom: 0;
+		}
+	}
+}
+
+@media ( min-width: $mobile ) {
+	.wp-block-gutenberg-joke-block {
+		p {
+			font-size: $base-font-size;
+		}
+	}
+}
+
+@media ( min-width: $phablet ) {
+	.wp-block-gutenberg-joke-block {
+		p {
+			font-size: $font-size-4;
+		}
+	}
+}
+
+@media ( min-width: $small-tablet ) {
+	.wp-block-gutenberg-joke-block {
+		p {
+			font-size: $base-font-size;
+		}
+	}
+}
+
+@media ( min-width: $desktop ) {
+	.wp-block-gutenberg-joke-block {
+		p {
+			font-size: $font-size-4;
+		}
+	}
+}
+
+@media ( min-width: $large-desktop ) {
+	.wp-block-gutenberg-joke-block {
+		p {
+			font-size: $base-font-size;
+		}
+	}
+}
+
+// Editor-only styles.
+
+div[data-type='gutenberg/joke-block'] {
+	margin-bottom: gutenberg-px-to-rem( 68px );
+
+	.wp-block-gutenberg-joke-block {
+		padding-top: unset;
+		display: grid;
+		grid-template-rows: min-content 1fr min-content;
+
+		&.is-style-no_image {
+			.wp-block-image {
+				display: none;
+			}
+			.editor-text-input {
+				&:first-of-type {
+					border-bottom: unset;
+					p {
+						color: $color-dark-blue;
+					}
+				}
+			}
+		}
+	}
+
+	.editor-text-input {
+		p {
+			position: static;
+			margin: 0;
+		}
+	}
+	.wp-block-image {
+		height: unset;
+		position: static;
+		grid-row: 2 / span 1;
+		figcaption {
+			display: none;
+		}
+	}
+}
